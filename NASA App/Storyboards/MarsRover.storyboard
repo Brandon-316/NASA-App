@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="C4u-xs-m1E">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Mars RoverVC-->
+        <scene sceneID="odo-07-kF1">
+            <objects>
+                <viewController id="L4q-K2-lDv" customClass="MarsRoverVC" customModule="NASA_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rsP-yJ-ns2">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="StarsBackground" translatesAutoresizingMaskIntoConstraints="NO" id="Cr2-0g-t5i">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                            </imageView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6oQ-FD-aQf">
+                                <rect key="frame" x="4" y="0.0" width="406" height="808"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="8" minimumInteritemSpacing="8" id="h1a-g4-ibg">
+                                    <size key="itemSize" width="120" height="120"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="4" minY="4" maxX="4" maxY="4"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RoverCell" id="cSi-CV-FxQ" customClass="RoverCell" customModule="NASA_App" customModuleProvider="target">
+                                        <rect key="frame" x="4" y="4" width="120" height="120"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mqh-wK-bYx">
+                                                    <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="Mqh-wK-bYx" secondAttribute="bottom" id="QzP-V2-hIc"/>
+                                            <constraint firstAttribute="trailing" secondItem="Mqh-wK-bYx" secondAttribute="trailing" id="Vud-2y-r0h"/>
+                                            <constraint firstItem="Mqh-wK-bYx" firstAttribute="top" secondItem="cSi-CV-FxQ" secondAttribute="top" id="qOX-YC-qSP"/>
+                                            <constraint firstItem="Mqh-wK-bYx" firstAttribute="leading" secondItem="cSi-CV-FxQ" secondAttribute="leading" id="wly-Vp-fFw"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="roverImageView" destination="Mqh-wK-bYx" id="YS9-hT-MwJ"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Cr2-0g-t5i" firstAttribute="leading" secondItem="FR2-lj-Rgo" secondAttribute="leading" id="01w-bM-KxL"/>
+                            <constraint firstAttribute="bottom" secondItem="6oQ-FD-aQf" secondAttribute="bottom" id="55z-q7-0x0"/>
+                            <constraint firstItem="6oQ-FD-aQf" firstAttribute="leading" secondItem="FR2-lj-Rgo" secondAttribute="leading" constant="4" id="Abm-Ri-9cm"/>
+                            <constraint firstItem="6oQ-FD-aQf" firstAttribute="top" secondItem="FR2-lj-Rgo" secondAttribute="top" id="BRj-QQ-Vyl"/>
+                            <constraint firstItem="FR2-lj-Rgo" firstAttribute="trailing" secondItem="6oQ-FD-aQf" secondAttribute="trailing" constant="4" id="GJC-gS-jLU"/>
+                            <constraint firstAttribute="bottom" secondItem="Cr2-0g-t5i" secondAttribute="bottom" id="dUQ-KS-lO8"/>
+                            <constraint firstItem="FR2-lj-Rgo" firstAttribute="trailing" secondItem="Cr2-0g-t5i" secondAttribute="trailing" id="h5p-gZ-AGq"/>
+                            <constraint firstItem="Cr2-0g-t5i" firstAttribute="top" secondItem="rsP-yJ-ns2" secondAttribute="top" id="llm-XC-RGE"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="FR2-lj-Rgo"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ebA-2k-tOS">
+                        <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" image="BackButtonRounded" id="0ih-Wv-CeG">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="dismiss:" destination="L4q-K2-lDv" id="YQa-pT-4Sh"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="4RV-2F-Qgv">
+                            <view key="customView" contentMode="scaleToFill" id="p9f-dC-2rp">
+                                <rect key="frame" x="302" y="5.5" width="92" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sol: ----" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y5V-GU-SEo">
+                                        <rect key="frame" x="0.0" y="0.0" width="92" height="33"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="y5V-GU-SEo" firstAttribute="leading" secondItem="p9f-dC-2rp" secondAttribute="leading" id="7IK-kW-IX8"/>
+                                    <constraint firstAttribute="trailing" secondItem="y5V-GU-SEo" secondAttribute="trailing" id="DMS-sa-ly2"/>
+                                    <constraint firstAttribute="bottom" secondItem="y5V-GU-SEo" secondAttribute="bottom" id="I5P-mP-Tuf"/>
+                                    <constraint firstItem="y5V-GU-SEo" firstAttribute="top" secondItem="p9f-dC-2rp" secondAttribute="top" id="wd8-1M-t5c"/>
+                                </constraints>
+                            </view>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="collectionView" destination="6oQ-FD-aQf" id="r2v-Yq-1hI"/>
+                        <outlet property="solLabel" destination="y5V-GU-SEo" id="oDx-HS-ejB"/>
+                        <segue destination="kln-9R-Mrp" kind="presentation" identifier="CreatePostcardSegue" id="2CG-zw-OoB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xq4-Lr-RFe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1065" y="-449"/>
+        </scene>
+        <!--CREATE POSTCARD-->
+        <scene sceneID="jYj-N7-dNh">
+            <objects>
+                <viewController id="kbe-2c-pK0" customClass="CreatePostcardVC" customModule="NASA_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hkF-wf-ekZ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="StarsBackground" translatesAutoresizingMaskIntoConstraints="NO" id="7DH-9l-Owa">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4gs-lR-7Kr">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="485"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="UEH-5J-zaH">
+                                <rect key="frame" x="20" y="525" width="374" height="99"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Hello from Mars!" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BrI-A3-9pc">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="FoR-nt-GuR">
+                                        <rect key="frame" x="0.0" y="70" width="374" height="29"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hz6-JN-L6i">
+                                                <rect key="frame" x="0.0" y="0.0" width="177" height="29"/>
+                                                <color key="backgroundColor" red="0.20539060235023499" green="0.46996092796325684" blue="0.96475261449813843" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                <state key="normal" title="ADD TEXT">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="addText:" destination="kbe-2c-pK0" eventType="touchUpInside" id="FTL-1y-g4Q"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gQ2-yW-vwG">
+                                                <rect key="frame" x="197" y="0.0" width="177" height="29"/>
+                                                <color key="backgroundColor" red="0.20539060240000001" green="0.469960928" blue="0.96475261450000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                <state key="normal" title="EMAIL">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="email:" destination="kbe-2c-pK0" eventType="touchUpInside" id="T2O-PT-gw9"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="UEH-5J-zaH" firstAttribute="top" secondItem="4gs-lR-7Kr" secondAttribute="bottom" constant="40" id="7j2-OO-lG5"/>
+                            <constraint firstItem="cW3-pE-4Ss" firstAttribute="trailing" secondItem="UEH-5J-zaH" secondAttribute="trailing" constant="20" id="Boy-Ig-Z4T"/>
+                            <constraint firstItem="4gs-lR-7Kr" firstAttribute="top" secondItem="cW3-pE-4Ss" secondAttribute="top" id="DAM-DB-LRo"/>
+                            <constraint firstItem="cW3-pE-4Ss" firstAttribute="trailing" secondItem="4gs-lR-7Kr" secondAttribute="trailing" id="M0n-hZ-Gjl"/>
+                            <constraint firstItem="4gs-lR-7Kr" firstAttribute="leading" secondItem="cW3-pE-4Ss" secondAttribute="leading" id="MoA-Gq-fTD"/>
+                            <constraint firstItem="7DH-9l-Owa" firstAttribute="leading" secondItem="cW3-pE-4Ss" secondAttribute="leading" id="VcE-y5-M8l"/>
+                            <constraint firstItem="cW3-pE-4Ss" firstAttribute="trailing" secondItem="7DH-9l-Owa" secondAttribute="trailing" id="Yoo-QA-1B5"/>
+                            <constraint firstItem="4gs-lR-7Kr" firstAttribute="height" secondItem="hkF-wf-ekZ" secondAttribute="height" multiplier="0.6" id="hue-XN-pro"/>
+                            <constraint firstAttribute="bottom" secondItem="7DH-9l-Owa" secondAttribute="bottom" id="iKS-ij-SdJ"/>
+                            <constraint firstItem="UEH-5J-zaH" firstAttribute="leading" secondItem="cW3-pE-4Ss" secondAttribute="leading" constant="20" id="kjU-Dq-GKK"/>
+                            <constraint firstItem="7DH-9l-Owa" firstAttribute="top" secondItem="hkF-wf-ekZ" secondAttribute="top" id="uqM-MF-YIo"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="cW3-pE-4Ss"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="CREATE POSTCARD" id="QaO-ET-lCV">
+                        <barButtonItem key="leftBarButtonItem" image="BackButtonRounded" id="6OL-JJ-ODb">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="dismiss:" destination="kbe-2c-pK0" id="AW3-AR-2TT"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="roverImageView" destination="4gs-lR-7Kr" id="l86-kr-eg1"/>
+                        <outlet property="textField" destination="BrI-A3-9pc" id="4pJ-Aq-jaX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w6C-7O-R3U" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2688" y="-449"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="1Qi-US-zKs">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="C4u-xs-m1E" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="cg5-4p-gRg">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="L4q-K2-lDv" kind="relationship" relationship="rootViewController" id="J3b-fJ-tdj"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="90F-Fc-Xj6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="379" y="-449"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Mis-HD-FLm">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kln-9R-Mrp" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="frf-tY-hRs">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="kbe-2c-pK0" kind="relationship" relationship="rootViewController" id="bsS-bg-4jy"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lQ7-tY-bTP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1970" y="-449"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="BackButtonRounded" width="27" height="27"/>
+        <image name="StarsBackground" width="2048" height="2732"/>
+    </resources>
+</document>
