@@ -21,24 +21,6 @@ class NASA_AppTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
-    // test that session returns a 200 results
-    func testFor200Code() {
-        let promise = expectation(description: "Status code: 200")
-        let url = URL(string: "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY")
-        var statusCode: Int?
-        var responseError: Error?
-        
-        _ = URLSession.shared.dataTask(with: url!) { data, response, error in
-            statusCode = (response as? HTTPURLResponse)?.statusCode
-            responseError = error
-            promise.fulfill()
-            } .resume()
-        
-        waitForExpectations(timeout: 5, handler: nil)
-        XCTAssertNil(responseError)
-        XCTAssertEqual(statusCode, 200)
-    }
-    
     
     //MARK: - Test ImageService
     func testDownloadRoverImage() {
