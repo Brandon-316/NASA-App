@@ -49,6 +49,7 @@ class MarsRoverVC: UIViewController {
         downloadRoverData()
     }
     
+    //Prepare for segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "CreatePostcardSegue" {
             guard let navController = segue.destination as? UINavigationController else { return }
@@ -62,6 +63,7 @@ class MarsRoverVC: UIViewController {
     }
     
     //MARK: - Methods
+    //Create array used for dropdown menu
     func createRoversArray() {
         for rover in Rovers.allCases {
             rovers.append(rover.rawValue)
@@ -104,23 +106,20 @@ class MarsRoverVC: UIViewController {
         roverDropDown.show()
     }
     
-    
+    //Adjust size of cell to ensure that each row contains 3 equally spaced cells
     func setCellSize() {
         //Get size of width of device screen
         let width = view.frame.width
-        print("width: \(width)")
         //Get width minus separations
         let reducedWidth = width - 32
-        print("reducedWidth: \(reducedWidth)")
         var cellSpan = reducedWidth / 3
-        print("cellSpan: \(cellSpan)")
         cellSpan.round(.down)
-        print("cellSpan: \(cellSpan)")
         
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: cellSpan, height: cellSpan)
     }
     
+    //Download data for selected rover
     func downloadRoverData() {
         JSONDownloader().downloadJSON(for: .marsRover, rover: self.currentSelectedRover, vc: self) { roverData, error in
             
@@ -134,10 +133,10 @@ class MarsRoverVC: UIViewController {
             self.roverData = data
             
             DispatchQueue.main.async {
-                self.collectionView?.reloadData()
                 guard let firstObject = self.roverData?.latestPhotos.first else { SVProgressHUD.dismiss(); return }
                 self.solLabel.text = "Sol: \(firstObject.sol)"
                 SVProgressHUD.dismiss()
+                self.collectionView?.reloadData()
             }
         }
     }

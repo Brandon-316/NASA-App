@@ -50,10 +50,9 @@ class MainViewController: UIViewController {
     
     }
     
+    //Check if phone has bezel and adjust constraint for marsRoverStack to accomodate difference in height of underlying view.
     func setConstraint()  {
-        print(hasTopNotch)
         if !hasTopNotch {
-            print("Did not have notch")
             self.marsRoverStackTopConstraint.constant = 20
         }
     }

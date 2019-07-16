@@ -46,8 +46,9 @@ extension EyeInTheSkyVC {
         if let location = self.currentLocation {
             let region = MKCoordinateRegion.init(center: location.coordinate, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
             mapView.setRegion(region, animated: true)
-        } else if let location = locationManager.location {
+            
             //If not center on current location
+        } else if let location = locationManager.location {
             let region = MKCoordinateRegion.init(center: location.coordinate, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
             mapView.setRegion(region, animated: true)
             self.previousLocation = location
@@ -107,12 +108,12 @@ extension EyeInTheSkyVC {
     }
     
     
+    //Reverse geocode to get location string for address label
     func reverseGeocode(with geoCoder: CLGeocoder, for center: CLLocation) {
         geoCoder.reverseGeocodeLocation(center) { [weak self] (placemarks, error) in
             guard let self = self else { return }
             
             if let error = error {
-                //TODO: Show alert informing the user
                 self.generalAlert(title: "Error", message: "There was an error.\n\nError: \(error.localizedDescription)")
                 print(error.localizedDescription)
                 return
@@ -125,6 +126,7 @@ extension EyeInTheSkyVC {
         }
     }
     
+    //Set the address label
     func setAddressLabel(with placemark: CLPlacemark) {
         var addressString: String = ""
         

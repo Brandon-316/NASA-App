@@ -14,6 +14,7 @@ class ImageService {
     static let cache = NSCache<NSString, UIImage>()
     
     static func downloadImage(withURL url:URL, completion: @escaping (_ image:UIImage?)->()) {
+        //Download image
         let dataTask = URLSession.shared.dataTask(with: url) { data, responseURL, error in
             var downloadedImage:UIImage?
             
@@ -21,6 +22,7 @@ class ImageService {
                 downloadedImage = UIImage(data: data)
             }
             
+            //Cache the image
             if downloadedImage != nil {
                 cache.setObject(downloadedImage!, forKey: url.absoluteString as NSString)
             }
@@ -35,8 +37,11 @@ class ImageService {
     }
     
     static func getImage(withURL url:URL, completion: @escaping (_ image:UIImage?)->()) {
+        //Check if image has already been cached
         if let image = cache.object(forKey: url.absoluteString as NSString) {
             completion(image)
+            
+            //If not than download image
         } else {
             downloadImage(withURL: url, completion: completion)
         }

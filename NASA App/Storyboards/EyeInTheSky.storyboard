@@ -41,11 +41,11 @@
                                         <rect key="frame" x="0.0" y="320" width="414" height="60"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oXf-ra-s0C">
-                                                <rect key="frame" x="157" y="15" width="100" height="30"/>
+                                                <rect key="frame" x="147" y="8" width="120" height="30"/>
                                                 <color key="backgroundColor" red="0.20539060235023499" green="0.46996092796325684" blue="0.96475261449813843" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="FWN-bb-YKg"/>
-                                                    <constraint firstAttribute="width" constant="100" id="b1q-5K-BX5"/>
+                                                    <constraint firstAttribute="width" constant="120" id="b1q-5K-BX5"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                 <state key="normal" title="Get Image">
@@ -55,14 +55,34 @@
                                                     <action selector="getImage:" destination="AZb-pg-sOK" eventType="touchUpInside" id="Hm5-IC-cvs"/>
                                                 </connections>
                                             </button>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="cbr-2L-JzW" userLabel="InfoStack">
+                                                <rect key="frame" x="16" y="43" width="382" height="13.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cloud cover: --%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wwd-i9-mUA">
+                                                        <rect key="frame" x="0.0" y="0.0" width="167.5" height="13.5"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date taken: ------" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8GR-aI-DjS">
+                                                        <rect key="frame" x="187.5" y="0.0" width="194.5" height="13.5"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="oXf-ra-s0C" firstAttribute="top" secondItem="ect-Vt-Dmc" secondAttribute="top" constant="15" id="F4R-Wy-D0n"/>
-                                            <constraint firstItem="oXf-ra-s0C" firstAttribute="centerX" secondItem="ect-Vt-Dmc" secondAttribute="centerX" id="Rh4-Jx-48E"/>
-                                            <constraint firstItem="oXf-ra-s0C" firstAttribute="centerY" secondItem="ect-Vt-Dmc" secondAttribute="centerY" id="aRX-Hf-OMk"/>
+                                            <constraint firstAttribute="trailing" secondItem="cbr-2L-JzW" secondAttribute="trailing" constant="16" id="6fI-c9-4fF"/>
+                                            <constraint firstItem="cbr-2L-JzW" firstAttribute="centerX" secondItem="ect-Vt-Dmc" secondAttribute="centerX" id="8F4-X8-Nz3"/>
+                                            <constraint firstItem="oXf-ra-s0C" firstAttribute="top" secondItem="ect-Vt-Dmc" secondAttribute="top" constant="8" id="AVb-DF-DlF"/>
+                                            <constraint firstItem="cbr-2L-JzW" firstAttribute="leading" secondItem="ect-Vt-Dmc" secondAttribute="leading" constant="16" id="Ecz-8r-Nxp"/>
+                                            <constraint firstItem="oXf-ra-s0C" firstAttribute="centerX" secondItem="ect-Vt-Dmc" secondAttribute="centerX" id="IEx-mf-fV3"/>
+                                            <constraint firstItem="cbr-2L-JzW" firstAttribute="top" secondItem="oXf-ra-s0C" secondAttribute="bottom" constant="5" id="MaS-of-CcV"/>
+                                            <constraint firstAttribute="bottom" secondItem="cbr-2L-JzW" secondAttribute="bottom" constant="3.5" id="oc4-Z3-JKe"/>
                                             <constraint firstAttribute="height" constant="60" id="pc1-S9-RuR"/>
-                                            <constraint firstAttribute="bottom" secondItem="oXf-ra-s0C" secondAttribute="bottom" constant="15" id="ze3-aT-B8h"/>
                                         </constraints>
                                     </view>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gwk-Ym-jeC">
@@ -108,16 +128,16 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="37O-q4-sLH">
-                                                    <rect key="frame" x="16" y="12" width="382" height="49.5"/>
+                                                    <rect key="frame" x="16" y="12" width="288" height="49.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Main Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="szx-3V-WxU">
-                                                            <rect key="frame" x="0.0" y="0.0" width="382" height="26.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="288" height="26.5"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="22"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Secondary Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="veb-Hk-nhm">
-                                                            <rect key="frame" x="0.0" y="30.5" width="382" height="19"/>
+                                                            <rect key="frame" x="0.0" y="30.5" width="288" height="19"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -175,6 +195,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addressLabel" destination="n3N-KJ-m6J" id="yWp-dg-YmJ"/>
+                        <outlet property="cloudCoverLbl" destination="Wwd-i9-mUA" id="0we-eV-5md"/>
+                        <outlet property="dateTakenLbl" destination="8GR-aI-DjS" id="Y5z-a9-Gvg"/>
                         <outlet property="imageView" destination="gwk-Ym-jeC" id="XtF-Co-ljQ"/>
                         <outlet property="mapView" destination="hf0-91-GV6" id="PMB-0S-127"/>
                         <outlet property="searchBar" destination="Moa-1B-Nhw" id="tfj-vN-14D"/>

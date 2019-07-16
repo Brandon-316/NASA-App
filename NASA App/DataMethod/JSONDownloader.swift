@@ -15,6 +15,7 @@ class JSONDownloader {
     
     let apiKey = "EZpNsGsjn5W1xzU2hulHsR4Ba0U7i6QtcdnsX6ah"
     
+    //Return type
     typealias ObjectCompletionHandler = (ObjectModel?, Error?) -> Void
     
     func downloadJSON(for object: NASATypes, rover: Rovers? = nil, latLong: (lat: Double, long: Double)? = nil, vc: UIViewController, completion:@escaping ObjectCompletionHandler) {
@@ -23,6 +24,7 @@ class JSONDownloader {
         
         var urlString: String = "https://api.nasa.gov/\(object.urlString)"
         
+        //Create urlString dependant on type of data being requested. Mars Rover or Eye in the Sky.
         if let rover = rover {
             let roverString: String = rover.rawValue
             urlString = "\(urlString)\(roverString)/latest_photos?api_Key=\(apiKey)"
@@ -30,12 +32,11 @@ class JSONDownloader {
         if let latLong = latLong {
             let latitude: String = String(latLong.lat)
             let longitude: String = String(latLong.long)
-            urlString = "\(urlString)?&lon=\(longitude)&lat=\(latitude)&api_key=\(apiKey)"
+            urlString = "\(urlString)?&lon=\(longitude)&lat=\(latitude)&cloud_score=True&api_key=\(apiKey)"
         }
         
-        
+        //Convert to a URL
         guard let url: URL = URL(string: urlString) else { return }
-        print("urlString: \(urlString)")
         let session: URLSession = URLSession.shared
         
         var jsonError: Error?
@@ -53,16 +54,9 @@ class JSONDownloader {
                 return
             }
             
-            // Decode data and calculate total number of pages
+            // Decode data
             if let urlLocation = urlLocation {
                 if let data = try? Data(contentsOf: urlLocation) {
-                    
-                    //Use below to view JSON data
-//                    if let jsonData = try? JSONSerialization.jsonObject(with: data, options: []) {
-//                        print("\njsonData: \(jsonData)")
-//                    } else {
-//                        print("\njsonData was nil")
-//                    }
                     
                     let decoder = JSONDecoder()
                     decoder.keyDecodingStrategy = .convertFromSnakeCase

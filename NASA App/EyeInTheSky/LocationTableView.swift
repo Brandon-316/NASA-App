@@ -11,6 +11,7 @@ import UIKit
 import MapKit
 
 
+//TableView for displaying search bar results
 class LocationTableView: NSObject, UITableViewDelegate, UITableViewDataSource {
     
     var setLocationVC: EyeInTheSkyVC

@@ -14,9 +14,9 @@
 		840C72C822DA8F3400A76A6B /* LocationTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840C72C722DA8F3400A76A6B /* LocationTableView.swift */; };
 		840C72CA22DA8F3D00A76A6B /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840C72C922DA8F3D00A76A6B /* LocationCell.swift */; };
 		840C72CC22DAA87700A76A6B /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840C72CB22DAA87700A76A6B /* LocationManager.swift */; };
+		8453329922DD505100098746 /* SearchLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8453329822DD505100098746 /* SearchLocations.swift */; };
 		845D553522D62A710020A64C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845D553422D62A710020A64C /* AppDelegate.swift */; };
 		845D553722D62A710020A64C /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 845D553622D62A710020A64C /* art.scnassets */; };
-		845D553922D62A710020A64C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845D553822D62A710020A64C /* ViewController.swift */; };
 		845D553C22D62A710020A64C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 845D553A22D62A710020A64C /* Main.storyboard */; };
 		845D553E22D62A730020A64C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 845D553D22D62A730020A64C /* Assets.xcassets */; };
 		845D554122D62A730020A64C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 845D553F22D62A730020A64C /* LaunchScreen.storyboard */; };
@@ -69,10 +69,10 @@
 		840C72C722DA8F3400A76A6B /* LocationTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTableView.swift; sourceTree = "<group>"; };
 		840C72C922DA8F3D00A76A6B /* LocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 		840C72CB22DAA87700A76A6B /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		8453329822DD505100098746 /* SearchLocations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocations.swift; sourceTree = "<group>"; };
 		845D553122D62A710020A64C /* NASA App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NASA App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		845D553422D62A710020A64C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		845D553622D62A710020A64C /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
-		845D553822D62A710020A64C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		845D553B22D62A710020A64C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		845D553D22D62A730020A64C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		845D554022D62A730020A64C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -173,7 +173,6 @@
 			children = (
 				845D553422D62A710020A64C /* AppDelegate.swift */,
 				845D553622D62A710020A64C /* art.scnassets */,
-				845D553822D62A710020A64C /* ViewController.swift */,
 				840C72CB22DAA87700A76A6B /* LocationManager.swift */,
 				845D556622D62ABC0020A64C /* MainViewController.swift */,
 				847992FD22D7ABDB001781D5 /* MarsRover */,
@@ -257,6 +256,7 @@
 				8479930C22D8DE67001781D5 /* NASATypes.swift */,
 				8479930E22D8EBFE001781D5 /* DataModels.swift */,
 				840C72C322DA332300A76A6B /* ImageService.swift */,
+				8453329822DD505100098746 /* SearchLocations.swift */,
 			);
 			path = DataMethod;
 			sourceTree = "<group>";
@@ -505,9 +505,9 @@
 			files = (
 				847992FF22D7B8B0001781D5 /* Rovers.swift in Sources */,
 				840C72C422DA332300A76A6B /* ImageService.swift in Sources */,
+				8453329922DD505100098746 /* SearchLocations.swift in Sources */,
 				847992F822D6BC70001781D5 /* JSONDownloader.swift in Sources */,
 				847992FC22D7ABD4001781D5 /* MarsRoverVC.swift in Sources */,
-				845D553922D62A710020A64C /* ViewController.swift in Sources */,
 				845D556D22D646D80020A64C /* Planets.swift in Sources */,
 				845D556522D62AA50020A64C /* PlanetaryARVC.swift in Sources */,
 				8479930D22D8DE67001781D5 /* NASATypes.swift in Sources */,

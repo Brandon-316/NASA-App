@@ -10,10 +10,8 @@ import Foundation
 
 
 
-
+//Protocol used so that JSONDownloader can utilize either RoverData or EarthImage
 protocol ObjectModel {}
-
-
 
 
 //Mars Rover
@@ -31,6 +29,7 @@ struct RoverImage: Codable {
 
 //Eye in the Sky
 struct EarthImage: Codable, ObjectModel {
+    var cloudScore: Double
     var date: String
     var url: String
 }

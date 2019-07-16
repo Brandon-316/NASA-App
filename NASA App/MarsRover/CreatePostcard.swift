@@ -26,9 +26,6 @@ class CreatePostcardVC: UIViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
-//        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-//        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-//        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
     
     
@@ -63,7 +60,7 @@ class CreatePostcardVC: UIViewController {
         
     }
     
-    
+    //Apply text to image
     func textToImage(drawText text: String, inImage image: UIImage, atPoint point: CGPoint) -> UIImage {
         let textColor = UIColor.white
         let textFont = UIFont(name: "Helvetica Bold", size: 80)!
@@ -86,10 +83,11 @@ class CreatePostcardVC: UIViewController {
         return newImage!
     }
     
+    //Present MFMailComposeViewController
     func composeMail() {
         
         guard MFMailComposeViewController.canSendMail() else {
-            self.generalAlert(title: "", message: "")
+            self.generalAlert(title: "Email Missing", message: "You must set up an email address on this device to send a postcard.")
             return
         }
         
@@ -127,6 +125,7 @@ class CreatePostcardVC: UIViewController {
 }
 
 
+//MARK: - MFMailComposeViewControllerDelegate
 extension CreatePostcardVC: MFMailComposeViewControllerDelegate {
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
@@ -146,6 +145,7 @@ extension CreatePostcardVC: MFMailComposeViewControllerDelegate {
                 print("saved")
             case .sent:
                 print("sent")
+            default: return
         }
         
         

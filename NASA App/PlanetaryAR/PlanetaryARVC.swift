@@ -19,7 +19,6 @@ class PlanetaryARVC: UIViewController, ARSCNViewDelegate {
     var planets: [String] = []
     var currentPlanet: Planets = .earthDay {
         didSet {
-            print(self.currentPlanet.rawValue)
             self.changePlanet()
         }
     }
@@ -52,6 +51,7 @@ class PlanetaryARVC: UIViewController, ARSCNViewDelegate {
     
     
     //MARK: - Methods
+    //Create array used for dropdown menu
     func createPlanetsArray() {
         for planet in Planets.allCases {
             planets.append(planet.rawValue)
@@ -149,7 +149,6 @@ extension PlanetaryARVC {
         if node.name == "Planet" {
             let velocity = sender.velocity(in: sceneView)
             let impulseFactor = velocity.x / 10000.0
-            print("Factor: ", impulseFactor)
             
             node.physicsBody?.applyTorque(SCNVector4Make(0, 1, 0, Float(impulseFactor)), asImpulse: true)
         }

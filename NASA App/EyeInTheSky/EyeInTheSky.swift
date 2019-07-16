@@ -24,12 +24,7 @@ class EyeInTheSkyVC: UIViewController {
     let regionInMeters: Double = 2000
     var previousLocation: CLLocation?
     
-    var currentLocation: CLLocation? {
-        didSet {
-            guard let coordinate2D = self.currentLocation?.coordinate else { return }
-            print("\nLatitude: \(coordinate2D.latitude)\nLongitude: \(coordinate2D.longitude)")
-        }
-    }
+    var currentLocation: CLLocation?
     
     var mapItems: [MKMapItem] = [] {
         didSet {
@@ -39,7 +34,6 @@ class EyeInTheSkyVC: UIViewController {
     }
     
     
-    
     //MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
@@ -47,6 +41,9 @@ class EyeInTheSkyVC: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var dateTakenLbl: UILabel!
+    @IBOutlet weak var cloudCoverLbl: UILabel!
+    
     
     
     //MARK: - Override Methods
@@ -64,11 +61,13 @@ class EyeInTheSkyVC: UIViewController {
         self.checkLocationServices()
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
     
     //MARK: - Methdods
     func getPhoto() {
-        print("getPhoto tapped")
-        guard let lat = self.currentLocation?.coordinate.latitude, let long = self.currentLocation?.coordinate.longitude else { print("return 1"); return }
+        guard let lat = self.currentLocation?.coordinate.latitude, let long = self.currentLocation?.coordinate.longitude else { return }
         let latLong: (lat: Double, long: Double) = (lat: lat, long: long)
         
         JSONDownloader().downloadJSON(for: .eyeInTheSky, latLong: latLong, vc: self) { (locationData, error) in
@@ -83,6 +82,11 @@ class EyeInTheSkyVC: UIViewController {
             if let urlString = URL(string: data.url) {
                 ImageService.getImage(withURL: urlString) { image in
                     self.imageView.image = image
+                    self.dateTakenLbl.text = "Date Taken: \(data.date)"
+                    
+                    let cloudScore = Int((data.cloudScore * 100).rounded())
+                    self.cloudCoverLbl.text = "Cloud Coverage: \(cloudScore)%"
+                    
                     SVProgressHUD.dismiss()
                 }
             }
@@ -133,26 +137,13 @@ extension EyeInTheSkyVC: UISearchBarDelegate {
 extension EyeInTheSkyVC {
     
     func populateNearByPlaces(searchString: String) {
+        let centerCoordinate = self.mapView.userLocation.coordinate
         
-        var region = MKCoordinateRegion()
-        region.center = CLLocationCoordinate2D(latitude: self.mapView.userLocation.coordinate.latitude, longitude: self.mapView.userLocation.coordinate.longitude)
-        
-        let request = MKLocalSearch.Request()
-        request.naturalLanguageQuery = searchString
-        request.region = region
-        
-        let search = MKLocalSearch(request: request)
-        search.start { (response, error) in
-            
-            guard let response = response else {
-                return
-            }
-            
+        SearchLocations.handleSearch(searchString: searchString, centerCoordinate: centerCoordinate) { (response, error) in
+            guard let response = response else { return }
             self.mapItems = response.mapItems
-            
-            
-            
         }
+        
     }
     
 }
