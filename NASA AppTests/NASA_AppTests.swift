@@ -40,11 +40,13 @@ class NASA_AppTests: XCTestCase {
     
     //MARK: - Test Downloading Rover Data
     func testDownloadRoverData() {
-        let vc = UIViewController()
+        let vc = MarsRoverVC()
         let expectation = XCTestExpectation(description: "Rover data returned")
         var roverImage: RoverImage?
         
-        JSONDownloader().downloadJSON(for: .marsRover, rover: .curiosity, vc: vc) { data, error in
+        guard let url = vc.createRoverURL(rover: .curiosity) else { return }
+        
+        JSONDownloader().downloadJSON(for: .marsRover, at: url, vc: vc) { data, error in
             let roverData = data as? RoverData
             let firstObject = roverData?.latestPhotos.first
             roverImage = firstObject
@@ -58,12 +60,15 @@ class NASA_AppTests: XCTestCase {
     
     //MARK: - Test Downloading Earth Location Data
     func testDownloadEarthLocationData() {
-        let vc = UIViewController()
+        let vc = EyeInTheSkyVC()
         let expectation = XCTestExpectation(description: "Location data returned")
         var locationData: EarthImage?
         let latLong = (lat: 30.274722, long: -97.740556)
+        let coordinate2D = CLLocationCoordinate2D(latitude: latLong.lat, longitude: latLong.long)
         
-        JSONDownloader().downloadJSON(for: .eyeInTheSky, latLong: latLong, vc: vc) { (data, error) in
+        guard let url = vc.createEarthImageURL(with: coordinate2D) else { return }
+        
+        JSONDownloader().downloadJSON(for: .eyeInTheSky, at: url, vc: vc) { (data, error) in
             locationData = data as? EarthImage
             expectation.fulfill()
         }

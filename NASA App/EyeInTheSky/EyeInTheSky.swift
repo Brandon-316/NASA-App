@@ -66,11 +66,21 @@ class EyeInTheSkyVC: UIViewController {
     }
     
     //MARK: - Methdods
-    func getPhoto() {
-        guard let lat = self.currentLocation?.coordinate.latitude, let long = self.currentLocation?.coordinate.longitude else { return }
-        let latLong: (lat: Double, long: Double) = (lat: lat, long: long)
+    func createEarthImageURL(with coordinate: CLLocationCoordinate2D) -> URL? {
+        let latLong: (lat: Double, long: Double) = (lat: coordinate.latitude, long: coordinate.longitude)
         
-        JSONDownloader().downloadJSON(for: .eyeInTheSky, latLong: latLong, vc: self) { (locationData, error) in
+        let nasaAPIString = "\(APIService.nasaURL)\(NASATypes.eyeInTheSky.urlString)?&lon=\(latLong.long)&lat=\(latLong.lat)&cloud_score=True&api_key=\(APIService.apiKey)"
+        
+        guard let url: URL = URL(string: nasaAPIString) else { return nil }
+        
+        return url
+    }
+    
+    func getPhoto() {
+        guard let coordinate2d = self.currentLocation?.coordinate else { return }
+        guard let url = createEarthImageURL(with: coordinate2d) else { return }
+        
+        JSONDownloader().downloadJSON(for: .eyeInTheSky, at: url, vc: self) { (locationData, error) in
             if let error = error {
                 SVProgressHUD.dismiss()
                 self.generalAlert(title: "Error", message: "There was an error downloading your data. Please check your connection and try again.\n\nError: \(error.localizedDescription)")

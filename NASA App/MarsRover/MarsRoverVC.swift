@@ -120,8 +120,18 @@ class MarsRoverVC: UIViewController {
     }
     
     //Download data for selected rover
+    func createRoverURL(rover: Rovers) -> URL? {
+        let nasaAPIString = "\(APIService.nasaURL)\(NASATypes.marsRover.urlString)\(rover.rawValue)/latest_photos?api_Key=\(APIService.apiKey)"
+        
+        guard let url: URL = URL(string: nasaAPIString) else { return nil }
+        
+        return url
+    }
+    
     func downloadRoverData() {
-        JSONDownloader().downloadJSON(for: .marsRover, rover: self.currentSelectedRover, vc: self) { roverData, error in
+        guard let url = createRoverURL(rover: self.currentSelectedRover) else { return }
+        
+        JSONDownloader().downloadJSON(for: .marsRover, at: url, vc: self) { roverData, error in
             
             if let error = error {
                 SVProgressHUD.dismiss()
