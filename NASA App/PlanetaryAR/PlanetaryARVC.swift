@@ -24,9 +24,14 @@ class PlanetaryARVC: UIViewController, ARSCNViewDelegate {
     }
     let planetDropDown: DropDown = DropDown()
     
+    let baseNode = SCNNode()
+    
     let sphere = SCNSphere(radius: 0.2)
     let material = SCNMaterial()
-    let node = SCNNode()
+    let planetNode = SCNNode()
+    
+    let saturnRingNode = SCNNode()
+    let ringTube = SCNTube(innerRadius: 0.30, outerRadius: 0.45, height: 0.0001)
     
     
     //MARK: - Outlets
@@ -116,14 +121,15 @@ extension PlanetaryARVC {
         
         sphere.materials = [material]
         
-        node.name = "Planet"
-        node.position = SCNVector3(0.0, 0.1, -0.7)
-        node.geometry = sphere
-        node.physicsBody=SCNPhysicsBody(type: .dynamic, shape: nil)
-        node.physicsBody?.isAffectedByGravity = false
-        node.physicsBody?.mass = 100
+        planetNode.name = "Planet"
+        planetNode.position = SCNVector3(0.0, -0.1, -1.0)
+        planetNode.geometry = sphere
+        planetNode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+        planetNode.physicsBody?.isAffectedByGravity = false
+        planetNode.physicsBody?.mass = 100
+        planetNode.physicsBody?.collisionBitMask = 0
         
-        sceneView.scene.rootNode.addChildNode(node)
+        sceneView.scene.rootNode.addChildNode(planetNode)
         
         // Set up a pan gesture recognizer and add to the sceneView.
         let pan = UIPanGestureRecognizer()
@@ -131,26 +137,58 @@ extension PlanetaryARVC {
         sceneView.addGestureRecognizer(pan)
     }
     
+    func addSaturnsRing() {
+        let ringMaterial = SCNMaterial()
+        ringMaterial.diffuse.contents = UIImage(named: "art.scnassets/SaturnsRings.png")
+        
+        ringTube.materials = [ringMaterial]
+        
+        
+        saturnRingNode.name = "SaturnsRing"
+        saturnRingNode.position = SCNVector3(0.0, -0.1, -1.0)
+        saturnRingNode.geometry = ringTube
+        saturnRingNode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+        saturnRingNode.physicsBody?.isAffectedByGravity = false
+        saturnRingNode.physicsBody?.mass = 100
+        saturnRingNode.physicsBody?.collisionBitMask = 0
+        
+        sceneView.scene.rootNode.addChildNode(saturnRingNode)
+    }
+    
+    
     func changePlanet() {
         material.diffuse.contents = UIImage(named: currentPlanet.sceneName)
         
         sphere.materials = [material]
         
-        node.geometry = sphere
+        if currentPlanet == .saturn {
+            addSaturnsRing()
+        } else if sceneView.scene.rootNode.childNodes.contains(self.saturnRingNode) {
+            saturnRingNode.removeFromParentNode()
+        }
+        
+        planetNode.geometry = sphere
     }
+    
     
     //Set gesture recognizer to conrol ability to rotate planet
     @objc func didPan(_ sender: UIPanGestureRecognizer) {
         
-        let tapPoint=sender.location(in: sceneView)
-        guard let hit=sceneView.hitTest(tapPoint, options: nil).first else { return }
+        let tapPoint = sender.location(in: sceneView)
+        guard let hit = sceneView.hitTest(tapPoint, options: nil).first else { return }
         let node = hit.node
         
-        if node.name == "Planet" {
+        if node.name == "Planet" || node.name == "SaturnsRing" {
             let velocity = sender.velocity(in: sceneView)
             let impulseFactor = velocity.x / 10000.0
-            
-            node.physicsBody?.applyTorque(SCNVector4Make(0, 1, 0, Float(impulseFactor)), asImpulse: true)
+
+            let objects = [self.planetNode, self.saturnRingNode]
+            for object in objects {
+                object.physicsBody?.applyTorque(SCNVector4Make(0, 1, 0, Float(impulseFactor)), asImpulse: true)
+            }
         }
     }
+    
+    
+    
 }
